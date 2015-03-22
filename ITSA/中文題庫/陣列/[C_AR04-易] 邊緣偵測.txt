@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+int main(int argc, char *argv[]) 
+{
+	int a;
+	while(scanf("%d",&a)!=EOF)
+	{
+		while(a!=0)
+		{
+			int b,c;
+			scanf("%d %d",&b,&c);
+			int d[b][c],i,j;
+			for(i=0;i<b;i++)
+			{
+				for(j=0;j<c;j++)
+				{
+					scanf("%d",&d[i][j]);
+				}
+			}
+			for(i=0;i<b;i++)
+			{
+				for(j=0;j<c;j++)
+				{
+					if(d[i][j]==0)
+					{
+						printf("_ ");
+					}
+					else
+					{
+						if(d[i-1][j]==0||d[i+1][j]==0||d[i][j+1]==0||d[i][j-1]==0)
+						{
+							printf("0 ");			
+						}
+						else
+						{
+							printf("_ ");	
+						}
+					}
+				}
+				printf("\n");
+			}
+			printf("\n");
+			a--;
+		}
+	}
+	return 0;
+}
+
