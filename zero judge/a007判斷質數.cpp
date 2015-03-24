@@ -7,8 +7,6 @@ int main(int argc, char *argv[]) {
 	int input=0;
 	buildprime();//建立質數表 
 	while(scanf("%d",&input)!=EOF){
-		int i=0;
-		int flag=0;
 		if(check(input)){
 			printf("質數\n");
 		}
