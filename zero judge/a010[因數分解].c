@@ -7,7 +7,7 @@ int main(int argc, char *argv[]) {
 	int input=0;
 	while(scanf("%d",&input)!=EOF){
 		int i,count=0;
-		for(i=2;i<=input;i++){
+		for(i=2;i*i<=input;i++){
 			while(input%i==0){
 				count++;
 				input=input/i;
@@ -26,6 +26,9 @@ int main(int argc, char *argv[]) {
 				printf("%d\n",i);
 			}
 			count=0;
+		}
+		if(input>1){
+			printf("%d\n",input);
 		}
 		
 	}
