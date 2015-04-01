@@ -12,7 +12,7 @@ int main(){
 		id[0]=toupper(id[0]);
 		first=id[0]-'A';
 		int answer=0;
-		answer=(change[first]/10)+(change[first]%10)*9;//計算英文字母的數字
+		answer=(change[first]/10)+(change[first]%10)*9;//計算英文字母的數字和 
 		int sum=0;
 		sum=sum+answer+id[9]-'0';
 		for(i=1,j=8;i<=8&&j>=1;i++,j--){

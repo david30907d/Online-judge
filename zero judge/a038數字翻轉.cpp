@@ -42,7 +42,7 @@ int main(){
 			printf("%c",answer[i]);
 			i++;
 		}
-		printf("\n");*/
+		printf("\n");*/ 
 	}
 	return 0;
 } 
