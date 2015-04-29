@@ -21,7 +21,7 @@ int main(){
 		if(sum%10==0){
 			printf("real\n");
 		}
-		else{
+		else if(sum%10!=0){
 			printf("fake\n");
 		}
 		

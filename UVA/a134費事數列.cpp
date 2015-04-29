@@ -13,6 +13,7 @@ void fseries(){
 		counter++;
 	}
 }
+int j=0;
 int main(){
 	int num=0;
 	fseries();
@@ -22,8 +23,6 @@ int main(){
 		for(int i=1;i<=num;i++){
 			int origininput;
 			scanf("%d",&origininput);
-			int j=0;
-			
 			for(j=0;farray[j]<=origininput;j++){//找到比input還要大的費數數字，然後減一 
 				//printf("%d ",farray[j]);	
 			}
