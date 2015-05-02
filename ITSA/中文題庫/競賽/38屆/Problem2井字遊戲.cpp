@@ -36,17 +36,18 @@ int main(int argc,char *argv[]){
 			}
 			printf("\n");
 		}
+		int xb=0,yb=0,tie=0;
 		for(j=0;j<=2;j++){
 	
 			if(answer[0][j]==answer[1][j]&&answer[0][j]==answer[2][j]){
 				if(answer[0][j]=='Y'){
-					printf("Y bingle\n");
+					yb++;
 				}
 				else if(answer[0][j]=='X'){
-					printf("X bingle\n");
+					xb++;
 				}
 				else{
-					printf("tie\n");
+					tie++;
 				}
 			}
 		}
@@ -54,28 +55,39 @@ int main(int argc,char *argv[]){
 	
 			if(answer[i][0]==answer[i][1]&&answer[i][0]==answer[i][2]){
 				if(answer[i][0]=='Y'){
-					printf("Y bingle\n");
+					yb++;
 				}
 				else if(answer[i][0]=='X'){
-					printf("X bingle\n");
+					xb++;
 				}
 				else{
-					printf("tie\n");
+					tie++;
 				}
 			}
 		}
 		if((answer[1][1]==answer[0][0]&&answer[2][2]==answer[1][1])||(answer[1][1]==answer[0][2]&&answer[2][0]==answer[1][1])){
 			if(answer[1][1]=='Y'){
-				printf("Y bingle\n");
+				yb++;
 			}
 			else if(answer[1][1]=='X'){
-				printf("X bingle\n");
+				xb++;
 			}
 			else {
-				printf("tie\n");
+				tie++;
 			}
 		}
-		
+		if(xb==0&&yb==0){
+			printf("Tie\n");
+		}
+		else if(yb>=1&&xb==0){
+			printf("Y bingle\n");
+		}
+		else if(xb>=1&&yb==0){
+			printf("X bingle\n");
+		}
+		else{
+			printf("Tie\n");
+		}
 		memset(input,0,sizeof(input));
 		memset(answer,'0',sizeof(answer));
 	}
