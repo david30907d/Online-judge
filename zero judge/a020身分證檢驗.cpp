@@ -5,8 +5,9 @@
 using namespace std;
 int main(){
 	int change[26]={10,11,12,13,14,15,16,17,34,18,19,20,21,22,35,23,24,25,26,27,28,29,32,30,31,33};
-	char id[10]={};
+	char id[11]={};//我不懂為什麼只要改成11個就會對了 
 	while(scanf("%s",id)!=EOF){
+		puts(id);
 		int i=0,j=0;
 		int first=0;
 		id[0]=toupper(id[0]);
@@ -18,10 +19,10 @@ int main(){
 		for(i=1,j=8;i<=8&&j>=1;i++,j--){
 			sum=sum+j*(id[i]-'0');
 		}	
-		if(sum%10==0){
+		if(sum%10==0){			
 			printf("real\n");
 		}
-		else if(sum%10!=0){
+		else if(sum%10!=0){			
 			printf("fake\n");
 		}
 		
