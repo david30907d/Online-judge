@@ -27,7 +27,7 @@ int main(){
 			}
 			j--;			
 			
-			int answer[50]={};
+			int answer[39]={};
 			int index=0;
 			int input=origininput;
 			while(input>0&&j>=0){
@@ -51,7 +51,7 @@ int main(){
 				j--;
 			}
 			printf("%d = ",origininput);
-			for(int i=0;i<index&&i<50;i++){
+			for(int i=0;i<index&&i<39;i++){
 				printf("%d",answer[i]);	
 			}
 			printf(" (fib)\n");						
