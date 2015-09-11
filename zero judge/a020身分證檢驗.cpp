@@ -5,9 +5,10 @@
 using namespace std;
 int main(){
 	int change[26]={10,11,12,13,14,15,16,17,34,18,19,20,21,22,35,23,24,25,26,27,28,29,32,30,31,33};
-	char id[11]={};//我不懂為什麼只要改成11個就會對了 
+	char id[11]={};//字串最後一個位元是'\0'!!所以要多一格
+	printf("請輸入身分證字號:");
 	while(scanf("%s",id)!=EOF){
-		puts(id);
+		printf("%s這個身分證是:");
 		int i=0,j=0;
 		int first=0;
 		id[0]=toupper(id[0]);
@@ -25,8 +26,7 @@ int main(){
 		else if(sum%10!=0){			
 			printf("fake\n");
 		}
-		
-		
+		printf("請輸入身分證字號:");		
 	}
 	 	return 0;
 }
