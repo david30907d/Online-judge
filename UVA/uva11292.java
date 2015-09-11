@@ -20,7 +20,10 @@ class Main{
 				break;
 			}
 			for(int i=0;i<maxn;i++){
-				dragon[i]=Integer.MAX_VALUE;
+				dragon[i]=Integer.MAX_VALUE;//Integer的最大值
+			    //因為Arrays.sort只能排物件型態，又創物件陣列的時候全部都被預設為null
+				//null時不能被排序的，所以我全部都填入最大值
+				//這樣排序救回從低到高去排，沒用到的就會被放在最後不會去呼叫到他
 				knight[i]=Integer.MAX_VALUE;
 			}
 			for(int i=0;i<dn;i++){
@@ -33,7 +36,7 @@ class Main{
 			Arrays.sort(knight);
 			int cur=0;
 			int cost=0;
-			for(int i=0;i<kn;i++){
+			for(int i=0;i<kn;i++){//排列完後只去計算實際有輸入的數量
 				if(knight[i]>=dragon[cur]){
 					cost+=knight[i];
 					if(++cur>=dn)break;				
