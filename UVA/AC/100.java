@@ -5,6 +5,9 @@ class Main{
 	// let the index (which must be int)
 	// out of the limit of int!!!
 	// so input must be long!!!
+	//之所以會發生ArrayIndexOutOfBound是因為當input超過999999範圍的時候會傳到第一個if
+	//再那裡會做很多3n+1的乘法，一旦超過int範圍就會變成負數，如果用long去處存就不會變成負數
+	//等到小於999999時又再傳回else if，然後就一定是會再int的範圍內，另外陣列的index只能用int去存取
 	public static long cycleLength(long input){
 		if(input>999999){
 			if((input&1)==1){
