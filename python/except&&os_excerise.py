@@ -37,6 +37,7 @@ try:
         inp=pickle.load(moinput)
         #這樣可以把pickle過的的檔案讀取出來,已經是二進制，所以也要用二進制去讀取
     print('===============================================')
-    print(inp)
+    for i in inp:
+        print(i)
 except:
     print("err")
