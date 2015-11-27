@@ -1,5 +1,5 @@
 import java.io.*;
-public class testfield
+public class Main
 {
 	public static int []a=new int[80];
 	public static int []tree=new int[255];
@@ -20,7 +20,7 @@ public class testfield
 			a[m]=Integer.parseInt(str2);
 		} 
 		maketree();
-		System.out.println("二元樹中序追蹤的結果：");
+		System.out.println("二元樹後序追蹤的結果：");
 		inorder(1);
 	}
 	public static void maketree()
@@ -46,9 +46,8 @@ public class testfield
 			inorder(2*node);
 			//print left node first			
 			inorder(2*node+1);
-			//print right node last.
-			if (tree[node]!=0)
-				System.out.print(tree[node]+"  ");
+			//print right node last.			
+			System.out.print(tree[node]+"  ");
 			//print middle node second
 		}
 	}
