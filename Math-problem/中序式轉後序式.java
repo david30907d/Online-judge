@@ -1,18 +1,19 @@
 // 將數學式子由中序表示法轉為後序表示法
-// File name: infixToPostfix.java
+// File name: testfield.java
 // Version 1.0, 5-25-2008
 
 import java.io.*;
 import java.lang.String;
 import java.util.Scanner;
-
-class infixToPostfix
+import java.util.*;
+class testfield
 {
-	static int MAX=20;
+	static int MAX=50;
 	static char infix_q[] = new char[MAX];
+	static char[] answer=new char[MAX];
 	static Scanner keyboard = new Scanner(System.in);
 	
- 	infixToPostfix() 
+ 	testfield() 
 	{
 		int i;
 		for (i=0; i<MAX; i++)
@@ -21,7 +22,7 @@ class infixToPostfix
 
 	public static void infix_to_postfix() throws IOException
 	{
-		int rear=0, top=0, ctr=0, i=0, index=-1;
+		int rear=0, top=0, ctr=0, i=0, index=-1, posti=0;//posti是postfix的index
 		char stack_t[] = new char[MAX];   // 用以儲存還不必輸出的運算子
  
 		for (i=0; i<MAX; i++){
@@ -29,7 +30,7 @@ class infixToPostfix
  		}
 		
 		System.out.print("請輸入一中序運算式: ");
-		String str = keyboard.next();  
+		String str = keyboard.nextLine();  
   
 	    i=0;
 		while (i < str.length()) {	
@@ -47,15 +48,19 @@ class infixToPostfix
  	 		switch (infix_q[ctr]) {
 				// 輸入為)，則輸出堆疊內運算子，直到堆疊內為(
 				case ')':
-					while(stack_t[top]!='(') 			      
-						System.out.printf("%c", stack_t[top--]);				   
+					while(stack_t[top]!='('){
+						answer[posti++]=stack_t[top];
+						System.out.printf("%c", stack_t[top--]);
+					}
 					top--;
 					break;					
 					
 				// 輸入為#，則將堆疊內還未輸出的運算子輸出
 				case '#':
-					while(stack_t[top]!='#')
+					while(stack_t[top]!='#'){
+						answer[posti++]=stack_t[top];
 						System.out.printf("%c", stack_t[top--]);
+					}
 					break;
  					
 				// 輸入為運算子，若小於TOP在堆疊中所指運算子，則將堆疊所指運算子輸出
@@ -66,14 +71,19 @@ class infixToPostfix
 				case '/':
 				case '+':
 				case '-': 	
- 				    while (compare(stack_t[top], infix_q[ctr])==1)
+ 				    while (compare(stack_t[top], infix_q[ctr])==1){
+ 				    	answer[posti++]=stack_t[top];
 						System.out.printf("%c", stack_t[top--]);
+ 				    }
 					stack_t[++top] = infix_q[ctr];
 					break;	
 						
 				// 輸入為運算元，則直接輸出
 				default :
-					System.out.printf("%c", infix_q[ctr]);
+					if(infix_q[ctr]!=' '){
+						answer[posti++]=infix_q[ctr];
+						System.out.printf("%c", infix_q[ctr]);
+					}
 			}
 		}
 	}
@@ -104,10 +114,45 @@ class infixToPostfix
  
 		return ((int)(index_s/2) >= (int)(index_i/2) ? 1 : 0);
 	}
-   
+	public static void cal(char[] input){
+		Stack s=new Stack();
+		int ans=0,add=0;
+		for(int i=0;input[i]!='\0';++i){						
+			if(input[i]=='+'){
+				add=Integer.parseInt(s.pop().toString());
+				ans=Integer.parseInt(s.pop().toString());
+				ans+=add;
+				s.push(ans);
+			}
+			else if(input[i]=='-'){
+				add=Integer.parseInt(s.pop().toString());
+				ans=Integer.parseInt(s.pop().toString());
+				ans-=add;
+				s.push(ans);
+			}
+			else if(input[i]=='*'){
+				add=Integer.parseInt(s.pop().toString());
+				ans=Integer.parseInt(s.pop().toString());
+				ans*=add;
+				s.push(ans);
+			}
+			else if(input[i]=='/'){
+				add=Integer.parseInt(s.pop().toString());
+				ans=Integer.parseInt(s.pop().toString());
+				ans/=add;
+				s.push(ans);
+			}
+			else{								
+				add=input[i]-'0';
+				//System.out.println("add is :"+add);
+				s.push(add);				
+			}
+		}
+		System.out.println(s.pop());
+	}
 	public static void main (String args[])throws IOException //主函數		
 	{ 
-		infixToPostfix obj = new infixToPostfix();
+		testfield obj = new testfield();
 
 		System.out.print("\n*********************************\n");
 		System.out.print("      -- 有效運算子 --\n");
@@ -116,7 +161,10 @@ class infixToPostfix
 		System.out.print(" +: 加      -: 減\n");
 		System.out.print(" (: 左括號  ): 右括號\n");
 		System.out.print("*********************************\n");
-
-		obj.infix_to_postfix();	
+		obj.infix_to_postfix();
+		System.out.println(answer);		
+		cal(answer);
+		
+		
 	}
 }
