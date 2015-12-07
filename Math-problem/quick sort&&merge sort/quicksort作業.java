@@ -2,11 +2,7 @@ import java.util.Scanner;
 import java.util.Random;
 import java.util.Arrays;
 public class quicksort {
-<<<<<<< HEAD:Math-problem/quick sort&&merge sort/quicksort作業.java
 	public static int max=100000000;
-=======
-	public static int max=10000000;
->>>>>>> 426ce6019ba821699720d33940d6cb740bcc1044:Math-problem/quicksort作業.java
 	public static Random ran=new Random();
 	public static mergesort m=new mergesort();
 	public static int[] input=new int[max];	
