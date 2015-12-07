@@ -2,32 +2,52 @@ import java.util.Scanner;
 import java.util.Random;
 import java.util.Arrays;
 public class quicksort {
+<<<<<<< HEAD:Math-problem/quick sort&&merge sort/quicksort作業.java
 	public static int max=100000000;
+=======
+	public static int max=10000000;
+>>>>>>> 426ce6019ba821699720d33940d6cb740bcc1044:Math-problem/quicksort作業.java
 	public static Random ran=new Random();
-	public static mrgesort m=new mrgesort();
+	public static mergesort m=new mergesort();
 	public static int[] input=new int[max];	
+	public static int[] compare1_input=new int[max];
+	public static int[] compare2_input=new int[max];
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int num=0;		
 		Scanner cin=new Scanner(System.in);
 		while(cin.hasNext()){
-			num=cin.nextInt();
-			long begintime = System.currentTimeMillis();
+			num=cin.nextInt();			
 			for(int i=0;i<max;++i){
 				input[i]=ran.nextInt(2147483647);
+				compare1_input[i]=input[i];
+				compare2_input[i]=input[i];				
 			}			
+			long begintime = System.currentTimeMillis();
 			//m.Sort(input,max);//這是合併排序的方法
 			//Sort(input);//這是quick sort的方法
-			Arrays.sort(input);
-			for(int i=0;i<max;++i){
-				if(i%5==0){
-					System.out.println();
-				}
-				System.out.print(input[i]+" ");
-			}
+			Arrays.sort(input);			
 			long endtime=System.currentTimeMillis();
 			long costTime = (endtime - begintime);
-			System.out.println("total cost: "+costTime+"ms");
+			System.out.println("util's arrays.sort takes: "+costTime+"ms");
+			
+			begintime = System.currentTimeMillis();
+			//m.Sort(input,max);//這是合併排序的方法
+			Sort(compare1_input);//這是quick sort的方法
+			//Arrays.sort(input);			
+			endtime=System.currentTimeMillis();
+			costTime = (endtime - begintime);
+			System.out.println("quick sort takes: "+costTime+"ms");
+			
+			begintime = System.currentTimeMillis();
+			m.Sort(compare2_input,max);//這是合併排序的方法
+			//Sort(compare1_input);//這是quick sort的方法
+			//Arrays.sort(input);			
+			endtime=System.currentTimeMillis();
+			costTime = (endtime - begintime);
+			System.out.println("merge sort takes: "+costTime+"ms");
+			
 		}
 		cin.close();
 	}
