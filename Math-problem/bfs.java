@@ -1,16 +1,16 @@
-// 圖形的追蹤: 利用相鄰串列與蹤向優先搜尋演算法(dfs)
-// File name: G_dfs.java
+// 圖形的追蹤: 利用相鄰串列與(bfs)
+// File name: G_bfs.java
 // Version 1.0, 5-25-2008
 
 import java.io.*;
-import java.util.Scanner;
+import java.util.*;
 class Node
 {
 	int vertex;
 	Node link;
 }
 
-public class dfs
+public class bfs
 {
 	final static int MAX_V=100; /*最大節點數*/
 	Node node = new Node();
@@ -18,7 +18,8 @@ public class dfs
 	static Node[] adjlist = new Node[MAX_V+1];        // 宣告相鄰串列
 	static boolean[] visited = new boolean[MAX_V+1];  // 記錄頂點是否已拜訪
 	static int total_vertex=0;
- 
+ 	static LinkedList que = new LinkedList();// view LinkedList as queue.
+
 	public void build_adjlist()
 	{   
 		Scanner cin=new Scanner(System.in);
@@ -46,9 +47,9 @@ public class dfs
 					lastnode = searchlast(adjlist[vi]);
 					lastnode.link = node;
 				}
-			} 
-			cin.close(); 
+			} 			
 		}
+		cin.close(); 
 	}
 	// 顯示各相鄰串列之資料
 	public void show_adjlist()
@@ -70,33 +71,33 @@ public class dfs
 	}
 
 	// 圖形之蹤向優先搜尋
-	public void dfs(int v)
+	public void bfs(int v)
 	{
+		visited[v]=true;
 		Node ptr = new Node();
-		int w=0;
-
-		System.out.print("V" + adjlist[v].vertex + " ");
-		visited[v] = true;          // 設定v頂點為已拜訪過
-		ptr = adjlist[v].link;      /* 拜訪相鄰頂點*/
-
-		do {
-			/* 若頂點尚未走訪，則以此頂點為新啟始點繼續
-			 做蹤向優先搜尋法走訪，否則找與其相鄰的頂點
-			 直到所有相連接的節點都已走訪*/
-			w = ptr.vertex;
-			if ( visited[w] == false)
-				dfs(w);
-			else
-				ptr = ptr.link;
-		} while ( ptr != null);
+		ptr=adjlist[v];
+		int i = v;
+		que.add(ptr);
+		while(que.size()!=0){
+			ptr=(Node)que.getFirst();
+			while(ptr.link!=null){
+				ptr=ptr.link;
+				if(visited[ptr.vertex]==false){
+					que.add(adjlist[ptr.vertex]);
+					visited[ptr.vertex]=true;// once visited, it cannot be put in the queue again.
+				}				
+			}		
+			System.out.print(((Node)que.getFirst()).vertex+"==> ");
+			que.removeFirst();// once has been outputed, pop it.
+		}
 	}
 
-	public Node searchlast( Node linklist )
+	public Node searchlast( Node LinkedList )
 	{
-		//the argument linklist is an element in "static Node[] adjlist" , so type of linklist is Node.
+		//the argument LinkedList is an element in "static Node[] adjlist" , so type of LinkedList is Node.
 		Node ptr = new Node();
 
-		ptr = linklist;
+		ptr = LinkedList;
 		while ( ptr.link != null ) 
 			ptr = ptr.link;
 		return ptr;
@@ -104,11 +105,11 @@ public class dfs
 	
 	public static void main(String args[])  // 主函數		 
 	{
-		dfs obj = new dfs();
+		bfs obj = new bfs();
  
 		obj.build_adjlist(); // 以相鄰串列表示圖形
 		obj.show_adjlist();  // 顯示串列之資料
 		System.out.print("\n------Depth First Search------\n");
-		obj.dfs(1);          // 圖形之蹤向優先搜尋，以頂點1為啟始頂點
+		obj.bfs(1);          // 圖形之蹤向優先搜尋，以頂點1為啟始頂點
 	}
 }
