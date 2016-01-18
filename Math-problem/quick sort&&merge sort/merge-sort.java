@@ -4,8 +4,7 @@ public class mergesort {
         int[] workArray = new int[array.length]; 
         Sort(array, workArray, 0, num); 
     } 
-      
-    private static void Sort(int[] array, int[] workArray, int start, int count) 
+    private static void Sort(int[] array, int[] workArray, int start, int count)
     { 
         if (count < 2) 
             return; 
