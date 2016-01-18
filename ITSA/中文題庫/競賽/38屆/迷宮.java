@@ -31,10 +31,10 @@
                 mazecell[x][y]='#';  
                 return 1;  
             }  
-            else if(mazecell[x][y]=='0'){  
-                mazecell[x][y]='#';  
+            else if(mazecell[x][y]=='0'){//0是可以走的 1是牆壁
+                mazecell[x][y]='#';//#是正確路徑
                 if(path(x+1,y)+path(x-1,y)+path(x,y-1)+path(x,y+1)==0){  
-                    mazecell[x][y]='*';  
+                    mazecell[x][y]='*'; //*是錯誤的路線 
                     return 0;  
                 }  
                   
