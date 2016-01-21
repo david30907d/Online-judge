@@ -36,7 +36,7 @@ public class Main{
 		    while (op.empty()!=true && ((Integer)op.peek()).intValue() != 0) 
 		        calc();
 		    op.pop();       // op棧頂的‘(’出棧
-		    insert(((Integer)val.pop()).intValue());
+		    insert(((Integer)val.pop()).intValue());//這條是為了檢查像是: !(!F|V) 這種，因為有！的要先去執行並改變他的值
 		} else if (c == '!') {    //若c ==‘!’，則3壓入算符棧op
 		    op.push(3);
 		} else if (c == '&') {   //若c == ‘&’，則相繼將op棧頂的‘&’或‘!’彈出，進行相應運算, 2壓入算符棧op
