@@ -1,26 +1,28 @@
 import java.util.Scanner;
-import java.math.BigDecimal;
 public class Main{		
 	//diff is the array that store the difference
 	//between each steps ( the changes)
-	public static int[] failure = new int[100];
+	public static int[] failure = new int[10050];
+	public static int ans;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner cin=new Scanner(System.in);					
-		while(cin.hasNext()){					
-			String input=cin.nextLine();
-			String pattern = cin.nextLine();
-			failure(pattern);
-			
-			for(int i=0;i<=10;i++){
-				System.out.print(" "+failure[i]);
-			}			
-			Morris_Pratt(input, pattern);
+		Scanner cin=new Scanner(System.in);						
+		while(cin.hasNext()){				
+			int time=cin.nextInt();
+			cin.nextLine();
+			for(int count=1;count<=time;count++){
+				ans=0;
+				String pattern=cin.nextLine();
+				String input = cin.nextLine();
+				//failure(pattern);			
+				Morris_Pratt(input, pattern);		
+				System.out.println(ans);
+			}
 		}
 		cin.close();
 		
 	}		
-	
+		
 	// 目前比對成功的字串片段是p[0...i-1]
 	// 大幅挪動P之後，比對成功的部份剩下P[0...failure[i-1]]。	
 	public static void Morris_Pratt(String t, String p)
@@ -31,14 +33,14 @@ public class Main{
 	    failure(p);
 	 
 	    // 進行字串匹配，O(T)。
-	    for (int i=0, j=-1; i<t.length(); ++i)
+	    	for (int i=0, j=-1; i<t.length(); ++i)
 	    {
 	        // 先試 p[0...j] 的「最長的相同前綴後綴」，
 	        // 再試「次長的相同前綴後綴」，
 	        // 再試「次次長的相同前綴後綴」……
 	        // 直到試成功為止。
 	        while (j >= 0 && p.charAt(j+1) != t.charAt(i))
-	            j = -1;
+	            j = failure[j];
 	 
 	        // t[i] 終於有用處了，終於可以加長！
 	        if (p.charAt(j+1) == t.charAt(i)) j++;
@@ -46,8 +48,8 @@ public class Main{
 	        // 匹配到P！
 	        if (j == p.length()-1)
 	        {
-	            System.out.println("P出現位置" +(i - p.length() + 1)); 
-	 
+	            //System.out.println("P出現位置" +(i - p.length() + 1)); 
+	 						ans++;
 	            // 如果字串結尾不是'\0'的時候，就必須挪動 P。
 	            // 如果字串結尾是'\0'的時候，就能省略這一行。
 	            j = failure[j];
@@ -67,7 +69,7 @@ public class Main{
 	        // 再試 p[0...failure[j]] 的「次長的相同前綴後綴」……
 	        // 直到試成功為止。
 	        while (j >= 0 && p.charAt(j+1) != p.charAt(i))
-	            j = -1;//
+	            j = failure[j];//
 	 
 	        // p[i] 終於有用處了，終於可以加長！
 	        if (p.charAt(j+1) == p.charAt(i)) j++;
