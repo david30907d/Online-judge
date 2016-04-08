@@ -7,9 +7,6 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		int[] arr={1,65,523,6,4,5,5,3,12,123,4,5123,12,13,45,4,53};
-		Main.insertion(arr);
-		output(arr);
-		System.out.println();
 		Main.shell_sort(arr);
 		output(arr);
 	}
@@ -17,16 +14,6 @@ public class Main {
 		for (int i=0; i<arr.length;++i ) {
 			System.out.print(arr[i]+" ");
 		}
-	}
-	public static void insertion(int[] arr){
-		  int left,j=0;
-		  for(int i=1;i<arr.length;++i){
-			  left=arr[i];
-			  for(j=i-1;j>=0&&arr[j]>left;--j){
-				  arr[j+1]=arr[j];
-			  }
-			  arr[j+1]=left;
-		  }
 	}
 	public static void shell_sort(int[] arr){
 		int n=arr.length;
